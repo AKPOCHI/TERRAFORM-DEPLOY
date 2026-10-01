@@ -1,4 +1,8 @@
+
 name: Destroy Infrastructure with Terraform
+=======
+name: Deploy Infrastructure with Terraform
+>>>>>>> aaea3e0ae4983232ebe9b3a610888c19590dcd81
 
 on:
   workflow_dispatch:
@@ -41,3 +45,16 @@ jobs:
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
+=======
+      - name: Terraform Format
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
+>>>>>>> aaea3e0ae4983232ebe9b3a610888c19590dcd81
