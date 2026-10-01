@@ -126,7 +126,7 @@ resource "aws_route_table" "ts_public_rt" {
     gateway_id = aws_internet_gateway.ts_gw.id
   }
 
- 
+
 
   tags = {
     Name = "ts public rt"
@@ -137,7 +137,7 @@ resource "aws_route_table" "ts_public_rt" {
 resource "aws_route_table" "ts_private_rt" {
   vpc_id = aws_vpc.ts_vpc.id
 
-    route {
+  route {
     cidr_block = "10.1.0.0/16"
     gateway_id = "local"
   }
@@ -149,7 +149,7 @@ resource "aws_route_table" "ts_private_rt" {
 resource "aws_route_table" "ts_database_rt" {
   vpc_id = aws_vpc.ts_vpc.id
 
-    route {
+  route {
     cidr_block = "10.1.0.0/16"
     gateway_id = "local"
   }
@@ -179,13 +179,13 @@ resource "aws_route_table_association" "ts_database_association" {
 
 resource "aws_nat_gateway" "ts_ng" {
 
-  subnet_id     = aws_subnet.ts_public_subnet.id
+  subnet_id = aws_subnet.ts_public_subnet.id
 
   tags = {
     Name = "gw NAT"
   }
 
- 
+
   depends_on = [aws_internet_gateway.ts_gw]
 }
 
