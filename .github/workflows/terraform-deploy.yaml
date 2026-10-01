@@ -1,15 +1,10 @@
-
-name: Destroy Infrastructure with Terraform
-=======
 name: Deploy Infrastructure with Terraform
->>>>>>> aaea3e0ae4983232ebe9b3a610888c19590dcd81
 
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
-    inputs:
-      confirm:
-        description: 'Type "destroy" to confirm'
-        required: true
 
 permissions:
   contents: read
@@ -19,10 +14,9 @@ env:
   TF_VERSION: "1.9.8"
 
 jobs:
-  destroy:
-    name: Terraform Destroy
+  terraform:
+    name: Terraform
     runs-on: ubuntu-latest
-    if: github.event.inputs.confirm == 'destroy'
 
     steps:
       - name: Checkout
@@ -43,9 +37,6 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Destroy
-        run: terraform destroy -auto-approve
-=======
       - name: Terraform Format
         run: terraform fmt -check -recursive
 
@@ -57,4 +48,3 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
->>>>>>> aaea3e0ae4983232ebe9b3a610888c19590dcd81
