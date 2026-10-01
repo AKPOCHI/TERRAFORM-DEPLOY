@@ -49,7 +49,7 @@ resource "aws_default_security_group" "fe_sg" {
   vpc_id = aws_vpc.ts_vpc.id
 
   ingress {
-    protocol  = tcp
+    protocol  = "tcp"
     self      = true
     from_port = 80
     to_port   = 80
@@ -70,7 +70,7 @@ resource "aws_default_security_group" "be_sg" {
   vpc_id = aws_vpc.ts_vpc.id
 
   ingress {
-    protocol  = tcp
+    protocol  = "tcp"
     self      = true
     from_port = 443
     to_port   = 443
@@ -90,7 +90,7 @@ resource "aws_default_security_group" "db_sg" {
   vpc_id = aws_vpc.ts_vpc.id
 
   ingress {
-    protocol  = tcp
+    protocol  = "tcp"
     self      = true
     from_port = 3306
     to_port   = 3306
@@ -162,7 +162,7 @@ resource "aws_route_table" "ts_database_rt" {
 
 
 resource "aws_route_table_association" "ts_public_association" {
-  subnet_id      = aws_subnet.ts_public_rt.id
+  subnet_id      = aws_subnet.ts_public_subnet.id
   route_table_id = aws_route_table.ts_public_rt.id
 }
 
